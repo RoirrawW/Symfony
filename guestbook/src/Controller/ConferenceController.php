@@ -12,8 +12,6 @@ class ConferenceController extends AbstractController
     #[Route('/', name: 'homepage')]
     public function index(Request $request): Response
     {
-        dd($request);
-
         return new Response(<<<EOF
             <html>
                 <body><img src="/images/under-construction.gif" /></body>
