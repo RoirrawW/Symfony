@@ -2,13 +2,14 @@
 
 namespace App\Entity;
 
+use Stringable;
 use App\Repository\AdminRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: AdminRepository::class)]
-class Admin implements UserInterface, PasswordAuthenticatedUserInterface
+class Admin implements UserInterface, PasswordAuthenticatedUserInterface, Stringable
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
