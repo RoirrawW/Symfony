@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20230222134337 extends AbstractMigration
+final class Version20230223110039 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,8 +20,8 @@ final class Version20230222134337 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('DROP INDEX uniq_880e0d76e7927c74');
-        $this->addSql('ALTER TABLE admin RENAME COLUMN email TO username');
+        $this->addSql('CREATE SEQUENCE admin_id_seq INCREMENT BY 1 MINVALUE 1 START 1');
+        $this->addSql('CREATE TABLE admin (id INT NOT NULL, username VARCHAR(180) NOT NULL, roles JSON NOT NULL, password VARCHAR(255) NOT NULL, PRIMARY KEY(id))');
         $this->addSql('CREATE UNIQUE INDEX UNIQ_880E0D76F85E0677 ON admin (username)');
     }
 
@@ -29,8 +29,7 @@ final class Version20230222134337 extends AbstractMigration
     {
         // this down() migration is auto-generated, please modify it to your needs
         $this->addSql('CREATE SCHEMA public');
-        $this->addSql('DROP INDEX UNIQ_880E0D76F85E0677');
-        $this->addSql('ALTER TABLE admin RENAME COLUMN username TO email');
-        $this->addSql('CREATE UNIQUE INDEX uniq_880e0d76e7927c74 ON admin (email)');
+        $this->addSql('DROP SEQUENCE admin_id_seq CASCADE');
+        $this->addSql('DROP TABLE admin');
     }
 }
